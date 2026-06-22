@@ -1,45 +1,34 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
+public class LoginTest extends BaseTest {
 
-
-
-public class LoginTest {
     @Test
-    public void checkLogin () throws InterruptedException {
-        //1. открыть браузер
-        //2. зайти на сайт https://www.saucedemo.com/
-        WebDriver browser = new ChromeDriver();
-        browser.get("https://www.saucedemo.com/");
-        browser.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("standard_user");
-        browser.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys(Keys.CONTROL + "A");
-        browser.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys(Keys.BACK_SPACE);
-        browser.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("standard_user");
-        browser.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
-        browser.findElement(By.cssSelector("#login-button")).click();
-        String titleName = browser.findElement(By.xpath("//*[@class='title']")).getText();
-        asserEquals(titleName, "Products", "Заголовок страницы не соответствует");
-    }
-    private void asserEquals(String titleName, String products, String заголовокСтраницыНеСоответствует) {
-    }
+    public void checkLogin() {
+        driver.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys(Keys.CONTROL + "A");
+        driver.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys(Keys.BACK_SPACE);
+        driver.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
+        driver.findElement(By.cssSelector("#login-button")).click();
+        String titleName = driver.findElement(By.xpath("//*[@class='title']")).getText();
 
+        assertEquals(titleName, "Products", "Заголовок страницы не соответствует");
+    }
 
     @Test
     public void checkIncorrectLogin() {
-        //1. открыть браузер
-        //2. зайти на сайт https://www.saucedemo.com/
-        WebDriver browser = new ChromeDriver();
-        browser.get("https://www.saucedemo.com/");
-        browser.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("");
-        browser.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
-        browser.findElement(By.cssSelector("#login-button")).click();
+        driver.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("");
+        driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
+        driver.findElement(By.cssSelector("#login-button")).click();
+        boolean isTitleVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
+        String errorText = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
 
+        assertTrue(isTitleVisible);
+        assertEquals(errorText, "Epic sadface: Username is required");
     }
-
-
-
 }
