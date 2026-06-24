@@ -16,7 +16,6 @@ public class SecondTest {
         } else return "FAIL";
     }
 
-
     @Test
     public void timTest() {
         String actualResult = trialCode(9);
