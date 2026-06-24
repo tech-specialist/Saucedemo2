@@ -1,4 +1,4 @@
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SecondTest {
@@ -19,25 +19,25 @@ public class SecondTest {
     @Test
     public void timTest() {
         String actualResult = trialCode(9);
-        AssertJUnit.assertEquals("T", actualResult);
+        Assert.assertEquals(actualResult, "T");
     }
 
 
     @Test
     public void timTest2() {
         String actualResult = trialCode(25);
-        AssertJUnit.assertEquals("M", actualResult);
+        Assert.assertEquals(actualResult, "M");
     }
 
     @Test
     public void timTest3() {
         String actualResult = trialCode(15);
-        AssertJUnit.assertEquals("TIM", actualResult);
+        Assert.assertEquals(actualResult, "TIM");
     }
 
     @Test
     public void timTest4() {
         String actualResult = trialCode(2);
-        AssertJUnit.assertEquals("FAIL", actualResult);
+        Assert.assertEquals(actualResult, "FAIL");
     }
 }
