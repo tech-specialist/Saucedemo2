@@ -1,6 +1,5 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertEquals;
 
 public class SecondTest {
     //КРАТНО 3, ВОЗВРАЩАТЬ 'Т'
@@ -17,29 +16,28 @@ public class SecondTest {
         } else return "FAIL";
     }
 
-
     @Test
     public void timTest() {
         String actualResult = trialCode(9);
-        assertEquals(actualResult, "T");
+        Assert.assertEquals(actualResult, "T");
     }
 
 
     @Test
     public void timTest2() {
         String actualResult = trialCode(25);
-        assertEquals(actualResult,"M");
+        Assert.assertEquals(actualResult, "M");
     }
 
     @Test
     public void timTest3() {
         String actualResult = trialCode(15);
-        assertEquals(actualResult, "TIM");
+        Assert.assertEquals(actualResult, "TIM");
     }
 
     @Test
     public void timTest4() {
         String actualResult = trialCode(2);
-        assertEquals(actualResult, "FAIL");
+        Assert.assertEquals(actualResult, "FAIL");
     }
 }
