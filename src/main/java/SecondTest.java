@@ -21,25 +21,25 @@ public class SecondTest {
     @Test
     public void timTest() {
         String actualResult = trialCode(9);
-        assertEquals(actualResult, "T");
+        assertEquals("T", actualResult);
     }
 
 
     @Test
     public void timTest2() {
         String actualResult = trialCode(25);
-        assertEquals(actualResult,"M");
+        assertEquals("M", actualResult);
     }
 
     @Test
     public void timTest3() {
         String actualResult = trialCode(15);
-        assertEquals(actualResult, "TIM");
+        assertEquals("TIM", actualResult);
     }
 
     @Test
     public void timTest4() {
         String actualResult = trialCode(2);
-        assertEquals(actualResult, "FAIL");
+        assertEquals("FAIL", actualResult);
     }
 }
