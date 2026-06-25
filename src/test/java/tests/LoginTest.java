@@ -1,7 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
-
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
@@ -9,23 +7,31 @@ import static org.testng.AssertJUnit.assertTrue;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void checkLogin() {
+    public void checkLogin() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
+        Thread.sleep(5000);
 
         assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
     }
-
 
     @Test
     public void checkIncorrectLogin() {
         loginPage.open();
         loginPage.login("","secret_sauce");
 
-        boolean isTitleVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
-        String errorText = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
 
-        assertTrue(isTitleVisible);
-        assertEquals(errorText, "Epic sadface: Username is required");
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(), "Epic sadface: Username is required");
+    }
+
+    @Test
+    public void checkIncorrectPassword() {
+        loginPage.open();
+        loginPage.login("","secret_sauce");
+
+
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(), "Epic sadface: Username is required");
     }
 }
