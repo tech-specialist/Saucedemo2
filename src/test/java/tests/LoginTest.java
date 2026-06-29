@@ -1,5 +1,7 @@
 package tests;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -27,7 +29,6 @@ public class LoginTest extends BaseTest {
     public void checkEmptyPasswordLogin() {
         loginPage.open();
         loginPage.login("standard_user","");
-
 
         assertTrue(loginPage.isErrorDisplayed());
         assertEquals(loginPage.getErrorText(), "Epic sadface: Password is required");
