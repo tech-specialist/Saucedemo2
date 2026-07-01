@@ -22,7 +22,6 @@ public class SecondTest {
         Assert.assertEquals(actualResult, "T");
     }
 
-
     @Test
     public void timTest2() {
         String actualResult = trialCode(25);
