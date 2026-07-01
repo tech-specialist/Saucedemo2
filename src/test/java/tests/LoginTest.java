@@ -27,7 +27,6 @@ public class LoginTest extends BaseTest {
         };
     }
 
-
     @Test(dataProvider = "incorrectLoginData")
     public void checkIncorrectLogin(String user, String password, String errorMessage) {
         loginPage.open();
