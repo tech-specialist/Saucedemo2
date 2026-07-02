@@ -14,6 +14,12 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
 
+    @AfterMethod(alwaysRun = true)
+    public void close() {
+        driver.manage().deleteAllCookies();
+        driver.quit();
+    }
+
     @BeforeMethod
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -24,10 +30,5 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
-    }
-
-    @AfterMethod
-    public void close() {
-        driver.quit();
     }
 }
