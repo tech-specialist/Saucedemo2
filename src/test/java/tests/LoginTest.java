@@ -8,7 +8,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(description = "Проверка корректной авторизации", priority = 1)
     public void checkLogin() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "incorrectLoginData")
+    @Test(dataProvider = "incorrectLoginData", dependsOnMethods = "checkLogin", priority = 2, invocationCount = 5)
     public void checkIncorrectLogin(String user, String password, String errorMessage) {
         loginPage.open();
         loginPage.login(user, password);
