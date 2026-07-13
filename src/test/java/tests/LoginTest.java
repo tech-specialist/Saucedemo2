@@ -9,10 +9,11 @@ import static org.testng.AssertJUnit.assertTrue;
 public class LoginTest extends BaseTest {
 
     @Test(description = "Проверка корректной авторизации", priority = 1)
-    public void checkLogin() throws InterruptedException {
+    public void checkLogin() {
+        System.out.println("LoginTest.checkLogin is running in Thread: "
+                + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        Thread.sleep(5000);
 
         assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
     }
@@ -27,8 +28,10 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "incorrectLoginData", dependsOnMethods = "checkLogin", priority = 2, invocationCount = 5)
+    @Test(dataProvider = "incorrectLoginData", dependsOnMethods = "checkLogin", priority = 2)
     public void checkIncorrectLogin(String user, String password, String errorMessage) {
+        System.out.println("LoginTest.checkIncorrectLogin is running in Thread: "
+                + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login(user, password);
 

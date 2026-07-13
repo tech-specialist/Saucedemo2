@@ -5,8 +5,9 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class ProductsTest extends BaseTest {
+public class BasketTest extends BaseTest {
     @Test
     public void checkGoodsAdded() {
         List<String> goodsList =
@@ -14,20 +15,18 @@ public class ProductsTest extends BaseTest {
                         "Sauce Labs Bolt T-Shirt",
                         "Sauce Labs Bike Light",
                         "Test.allTheThings() T-Shirt (Red)");
-        System.out.println("ProductsTest is running in Thread: "
+        System.out.println("BasketTest is running in Thread: "
                 + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
         assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
-        productsPage.addGoodsToCart(4);
 
         for (String goods : goodsList) {
             productsPage.addGoodsToCart(goods);
         }
 
-        //Thread.sleep(5000);
-        assertEquals(productsPage.checkCounterColour(), "rgba(226, 35, 26, 1)");
-        assertEquals(productsPage.checkCounterValue(), "4");
+        productsPage.switchToBasket();
+        assertTrue(basketPage.getProductsNames().equals(goodsList));
     }
 }
