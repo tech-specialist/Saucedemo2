@@ -4,7 +4,9 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
     @Test
@@ -17,9 +19,9 @@ public class ProductsTest extends BaseTest {
         System.out.println("ProductsTest is running in Thread: "
                 + Thread.currentThread().getId());
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
 
-        assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
+        assertEquals(productsPage.getTitle(), PRODUCTS, "Заголовок страницы не соответствует");
         productsPage.addGoodsToCart(4);
 
         for (String goods : goodsList) {

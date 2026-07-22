@@ -4,8 +4,10 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class BasketTest extends BaseTest {
     @Test
@@ -18,15 +20,15 @@ public class BasketTest extends BaseTest {
         System.out.println("BasketTest is running in Thread: "
                 + Thread.currentThread().getId());
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
 
-        assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
+        assertEquals(productsPage.getTitle(), PRODUCTS, "Заголовок страницы не соответствует");
 
         for (String goods : goodsList) {
             productsPage.addGoodsToCart(goods);
         }
 
-        productsPage.switchToBasket();
+        productsPage.navigationPanel.switchToCart();
         assertTrue(basketPage.getProductsNames().equals(goodsList));
     }
 }

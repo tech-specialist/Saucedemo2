@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import user.User;
 
 public class LoginPage extends BasePage {
     private final By loginInput = By.xpath(DATA_TEST_PATTERN.formatted("username"));
@@ -14,14 +15,32 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+
+        return this;
     }
 
-    public void login(String login, String password) {
-        driver.findElement(loginInput).sendKeys(login);
-        driver.findElement(passwordInput).sendKeys(password);
+    public LoginPage open(String url) {
+        driver.get(BASE_URL + url);
+
+        return this;
+    }
+
+    public LoginPage login(User user) {
+        fillInLoginField(user.getName());
+        fillInPasswordField(user.getPassword());
         driver.findElement(submitButton).click();
+
+        return this;
+    }
+
+    public void fillInLoginField(String login) {
+        driver.findElement(loginInput).sendKeys(login);
+    }
+
+    public void fillInPasswordField(String password) {
+        driver.findElement(passwordInput).sendKeys(password);
     }
 
     public boolean isErrorDisplayed() {

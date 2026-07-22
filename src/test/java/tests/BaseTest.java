@@ -12,6 +12,8 @@ import org.testng.annotations.Parameters;
 import pages.BasketPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.PropertyReader;
+
 import java.time.Duration;
 
 public class BaseTest {
