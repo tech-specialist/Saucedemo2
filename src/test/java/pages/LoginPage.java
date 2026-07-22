@@ -29,7 +29,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage login(User user) {
         fillInLoginField(user.getName());
-        fillInLoginField(user.getPassword());
+        fillInPasswordField(user.getPassword());
         driver.findElement(submitButton).click();
 
         return this;
