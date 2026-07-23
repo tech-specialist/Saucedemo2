@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -7,8 +8,15 @@ import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static user.UserFactory.withAdminPermission;
 
+@Epic("Блок онлайн оплаты")
+@Feature("Оплата банк картой")
 public class LoginTest extends BaseTest {
 
+
+    @Story("Ввод персональных данных")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("Saucedemo2")
+    @Issue("")
     @Test(description = "Проверка корректной авторизации", priority = 1)
     public void checkLogin() {
         System.out.println("LoginTest.checkLogin is running in Thread: "

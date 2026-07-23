@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,6 +44,7 @@ public class BaseTest {
         basketPage = new BasketPage(driver);
     }
 
+    @Step("Закрытие")
     @AfterMethod(alwaysRun = true)
     public void close() {
         driver.manage().deleteAllCookies();
