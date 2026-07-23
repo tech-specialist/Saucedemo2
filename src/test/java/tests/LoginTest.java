@@ -3,6 +3,7 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.AllureUtils;
 
 import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
@@ -10,13 +11,14 @@ import static user.UserFactory.withAdminPermission;
 
 @Epic("Блок онлайн оплаты")
 @Feature("Оплата банк картой")
+@Owner("Belov Dmitry Vladimirovich belov@gmail.com")
 public class LoginTest extends BaseTest {
 
 
     @Story("Ввод персональных данных")
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("Saucedemo2")
-    @Issue("")
+    @Issue("Blanchard")
     @Test(description = "Проверка корректной авторизации", priority = 1)
     public void checkLogin() {
         System.out.println("LoginTest.checkLogin is running in Thread: "
@@ -25,6 +27,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(withAdminPermission());
 
         assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName(), "Заголовок страницы не соответствует");
+
     }
 
     @DataProvider(name = "incorrectLoginData")

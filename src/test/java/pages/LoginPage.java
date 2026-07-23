@@ -29,7 +29,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Логинимся под кредами пользователя")
+    @Step("Логинимся под кредами пользователя: = {user.name}, пароль = ******")
     public LoginPage login(User user) {
         fillInLoginField(user.getName());
         fillInPasswordField(user.getPassword());

@@ -2,12 +2,13 @@ public class FistTest {
     String name = "David";
 
     public void chek() {
-        // name = "ffdf";
+        // name = "fffdf";
     }
 
     public void chek2() {
         name = "Maria";
     }
+
 
     public static void main(String[] args) {
         int age;
@@ -19,6 +20,5 @@ public class FistTest {
         System.out.println(name == name3);
         System.out.println(name.equals(name3));
     }
-
 }
 
