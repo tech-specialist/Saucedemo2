@@ -3,7 +3,6 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utils.AllureUtils;
 
 import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
